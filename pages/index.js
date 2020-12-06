@@ -8,7 +8,7 @@ function Index({ questions }) {
       <section className="max-w-4xl mx-auto text-center">
         <div className="">
           <Link href="/quiz">
-            <button className="bg-purple-600 text-white py-2 px-4 rounded-sm">
+            <button className="bg-purple-600 text-white py-2 px-4 rounded-sm text-xl">
               Start Quiz
             </button>
           </Link>

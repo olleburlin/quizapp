@@ -182,7 +182,7 @@ function Quiz({ questions }) {
 
 export async function getServerSideProps(context) {
   const res = await fetch(
-    "https://opentdb.com/api.php?amount=3&type=multiple&difficulty=easy"
+    "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy"
   );
   const json = await res.json();
 

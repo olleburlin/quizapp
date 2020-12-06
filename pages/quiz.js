@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 
 function Quiz({ questions }) {
@@ -18,15 +17,17 @@ function Quiz({ questions }) {
   const allAnswers = correctAnswer.concat(incorrectAnswers);
   const pair = correctAnswer.concat(incorrectAnswers[0]);
 
-  // const shuffleAnswers = (arr) => {
-  //   return arr.sort((a, b) => (Math.random() < 0.5 ? 1 : -1));
-  // };
+  const wrongAnswers = questions.length - score;
+  const rightAnswers = questions.length - wrongAnswers;
+
+  // Handle the 50/50 lifeline
 
   const handleLifelineFifty = () => {
     setLifelineFiftyUsed(true);
     setLifelineFifty(true);
   };
 
+  // Handle the extra time lifeline
   const handleLifelineExtraTime = () => {
     if (lifelineExtraTime == false) {
       setTimeLeft(timeLeft + 10);
@@ -34,8 +35,7 @@ function Quiz({ questions }) {
     setLifelineExtraTime(true);
   };
 
-  const nextQuestion = currentQuestion + 1;
-
+  //Set off and handle timer
   useEffect(() => {
     if (timeLeft === 0) {
       setTimeLeft(0);
@@ -49,13 +49,14 @@ function Quiz({ questions }) {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
+  //Check answers and move on to the next question
+  const nextQuestion = currentQuestion + 1;
   const handleNextQuestion = (e) => {
     let elem = e.currentTarget;
     let corr = elem.dataset.answer;
     if (corr == correctAnswer[0]) {
       setScore(score + 1);
     }
-
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
       console.log(score);
@@ -70,8 +71,14 @@ function Quiz({ questions }) {
     <Layout>
       <section className="max-w-4xl mx-auto p-4">
         <div className="flex flex-row space-x-8 items-center text-4xl font-bold">
-          <div className="text-green-600">
+          <div className="text-green-600 p-4">
             <p>{showScore ? "Score: " + score : ""}</p>
+            {showScore == true && (
+              <div>
+                <p>Right answers: {rightAnswers}</p>
+                <p>Wrong answers: {wrongAnswers}</p>
+              </div>
+            )}
           </div>
         </div>
         {showScore ? (
@@ -102,7 +109,7 @@ function Quiz({ questions }) {
               <button
                 onClick={handleLifelineExtraTime}
                 className={`bg-green-500 p-4 ${
-                  lifelineExtraTime == false ? `text-white` : `text-gray-200`
+                  lifelineExtraTime == false ? `text-white` : `text-gray-300`
                 }`}
               >
                 Add 10 Secs
@@ -111,7 +118,7 @@ function Quiz({ questions }) {
                 disabled={lifelineFiftyUsed}
                 onClick={handleLifelineFifty}
                 className={`bg-green-500 p-4 ${
-                  lifelineFiftyUsed == true ? `text-gray-200` : `text-white`
+                  lifelineFiftyUsed == true ? `text-gray-300` : `text-white`
                 }`}
               >
                 50/50

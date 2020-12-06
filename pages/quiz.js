@@ -126,6 +126,7 @@ function Quiz({ questions }) {
             </div>
           </>
         )}
+
         {showScore ? (
           true
         ) : (
@@ -138,7 +139,7 @@ function Quiz({ questions }) {
                   onClick={handleNextQuestion}
                   data-answer={answer}
                   className={`${
-                    pair.includes(answer) && lifelineFifty == true
+                    !pair.includes(answer) && lifelineFifty == true
                       ? `hidden`
                       : ``
                   } bg-blue-500 text-white py-4 px-4 m-4`}

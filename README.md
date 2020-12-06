@@ -2,7 +2,7 @@
 
 Quiz app built using React, Next.js and Tailwind for styling.
 
-[Demo](https://quizapp-nwvvkzprx.vercel.app)
+[Demo](quizapp.burlinolle.vercel.app)
 
 ## Todo
 

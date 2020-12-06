@@ -11,6 +11,11 @@ What's missing from the description in the assignment are
 - Testing
 - More stats
 
+Shuffle answers. Right now the correct answer is always on top.
+A conflict with useEffect and setTimeout made me lose my mind so i left it.
+Styling/Design
+And a bunch more.
+
 ## How to use
 
 ```

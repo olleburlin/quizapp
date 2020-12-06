@@ -1,6 +1,6 @@
 # Quiz App
 
-Quiz app built using React and Next.js
+Quiz app built using React, Next.js and Tailwind for styling.
 
 [Demo](https://quizapp-nwvvkzprx.vercel.app)
 
